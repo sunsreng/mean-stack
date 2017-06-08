@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-messages',
     template: `
-        <div class="row">
+        <div ccllslass="row">
             <app-message-input></app-message-input>
         </div>
         <hr>
@@ -12,6 +12,5 @@ import { Component } from "@angular/core";
         </div>
     `
 })
-export class MessagesComponent {
 
-}
+export class MessagesComponent {}
