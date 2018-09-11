@@ -1,12 +1,14 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://sreng:Van-HTJ-TPk-aq9@cluster0-w5ki1.mongodb.net/mean?retryWrites=true')
+mongoose.connect('mongodb+srv://sreng:Van-HTJ-TPk-aq9@cluster0-w5ki1.mongodb.net/mean')
     .then(() => {
         console.log('Connected to database');
     })
@@ -16,6 +18,7 @@ mongoose.connect('mongodb+srv://sreng:Van-HTJ-TPk-aq9@cluster0-w5ki1.mongodb.net
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/images', express.static(path.join('backend/images')));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,7 +27,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use("/api/posts", postRoutes)
+app.use("/api/posts", postRoutes);
+app.use("/api/user", userRoutes);
 
 
 module.exports = app;
